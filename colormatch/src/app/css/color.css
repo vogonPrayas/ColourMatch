@@ -1,0 +1,16 @@
+.Ccontainer{
+    background-color: #1c2028;
+    padding: 20px 0px;
+    border-radius: 10px;
+    margin-top: 45px;
+    margin-left: 30px;
+}
+.Rcon{
+    display: flex;
+    /* justify-content: space-between;
+    align-items: center; */
+}
+.color:hover{
+    transform: translateX(3px);
+    
+}
