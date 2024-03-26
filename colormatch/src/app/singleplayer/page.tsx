@@ -15,9 +15,23 @@ for (let i = 0; i < 25; i++) {
 
 const Page: React.FC = () => {
 
-  const {color,finalColor,getColor}=useStore() as State
+  const {color,finalColor,getColor,RandomColor}=useStore() as State
     const go=()=>{
+      let COUNT=0
         console.log(finalColor)
+        for(let i=0;i<RandomColor.length;i++){
+          if(finalColor[i]==RandomColor[i]){
+            COUNT+=1
+            console.log(finalColor[i],RandomColor[i])
+            console.log(COUNT)
+          }
+        }
+        if(COUNT==RandomColor.length){
+          console.log("milyo")
+        }
+        else{
+          console.log("milena")
+        }
     }
 
   return (
