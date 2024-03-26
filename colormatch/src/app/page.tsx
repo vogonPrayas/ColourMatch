@@ -1,11 +1,12 @@
-"use Client"
+
 import Link from "next/link";
-import "./css/button.css"
 import React from "react";
+import "./css/menu.css"
+import "./css/button.css"
 export default function Home() {
   return (
     <>
-    <div>
+    <div className="MainTop">
       <h1 className="title">COLOR MATCH</h1>
       <div className="hcontainer">
       <Link href="/singleplayer" className="link" >SINGLE PLAYER</Link>

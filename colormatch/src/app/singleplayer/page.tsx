@@ -18,7 +18,7 @@ const Page: React.FC = () => {
   const {color,finalColor,getColor,RandomColor}=useStore() as State
     const go=()=>{
       let COUNT=0
-        console.log(finalColor)
+      console.log(finalColor)
         for(let i=0;i<RandomColor.length;i++){
           if(finalColor[i]==RandomColor[i]){
             COUNT+=1
@@ -37,14 +37,16 @@ const Page: React.FC = () => {
   return (
     <>
       <div className='time'>TIME</div>
-      <div className="con">
-        <div><Colors /></div>
+    <div className="con">
+      <div className="ColBoxcon">
+        <div><Colors /></div> 
         <div className="container">
-          {array.map(name => (<Box key={name} index={name}small={false}/>))}
+          {array.map(name => (<Box key={name} index={name}small={false}/>))}</div>  
         </div>
+        <div className="border"> </div>
         <Random></Random>
-      </div>
-      <button onClick={go} className="link">finish</button>
+    </div>
+      <div onClick={go} className="link">finish</div>
     </>
   );
 }

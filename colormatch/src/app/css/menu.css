@@ -1,0 +1,17 @@
+.MainTop{
+    margin-top: 30px;
+}
+
+.hcontainer{
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px; 
+    align-items: center;  
+    width: 99vw;
+}
+
+.title{
+    text-align: center;
+    font-size: clamp(30px,4vw,50px);
+}
