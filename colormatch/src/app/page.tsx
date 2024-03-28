@@ -9,8 +9,8 @@ export default function Home() {
     <div className="MainTop">
       <h1 className="title">COLOR MATCH</h1>
       <div className="hcontainer">
-      <Link href="/singleplayer" className="link" >SINGLE PLAYER</Link>
-      <Link href="/multiplayer" className="link">MULTI PLAYER</Link>
+      <Link href="/singleplayer" className="button" >SINGLE PLAYER</Link>
+      <Link href="/multiplayer" className="button">MULTI PLAYER</Link>
       </div>
     </div>
     </>

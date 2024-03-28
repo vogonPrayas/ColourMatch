@@ -1,0 +1,12 @@
+.RandomContainer{
+    margin-top: 150px;
+    display: grid;
+    grid-template-columns: repeat(5, 20px); 
+    gap:7px;
+    justify-content: center;
+    height: fit-content;
+}
+.center{
+    margin: auto;
+    margin-top: 20px;
+}

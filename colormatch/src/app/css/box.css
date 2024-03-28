@@ -22,11 +22,3 @@
     height: 20px;
     border-radius: 2px;
 }
-.RandomContainer{
-    margin-top: 150px;
-    display: grid;
-    grid-template-columns: repeat(5, 20px); 
-    GAP:7px;
-    justify-content: center;
-    height: fit-content;
-}

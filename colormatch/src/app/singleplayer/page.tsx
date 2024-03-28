@@ -3,7 +3,10 @@ import React from 'react';
 import Box from '../components/box';
 import Colors from '../components/colors';
 import Random from '../components/random';
+import Timer from '../components/timer';
 import "../css/singleplayer.css";
+import "../css/button.css"
+
 import useStore from '../store'
 import { State } from '../store'
 
@@ -19,6 +22,7 @@ const Page: React.FC = () => {
     const go=()=>{
       let COUNT=0
       console.log(finalColor)
+      
         for(let i=0;i<RandomColor.length;i++){
           if(finalColor[i]==RandomColor[i]){
             COUNT+=1
@@ -36,7 +40,7 @@ const Page: React.FC = () => {
 
   return (
     <>
-      <div className='time'>TIME</div>
+      <Timer/>
     <div className="con">
       <div className="ColBoxcon">
         <div><Colors /></div> 
@@ -46,7 +50,7 @@ const Page: React.FC = () => {
         <div className="border"> </div>
         <Random></Random>
     </div>
-      <div onClick={go} className="link">finish</div>
+      <div onClick={go} className="button sButton">finish</div>
     </>
   );
 }
