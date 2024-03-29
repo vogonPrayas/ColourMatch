@@ -12,14 +12,13 @@ const Box = ({ index,small,Random}: { index: number,small:boolean,Random:boolean
   })
 
   React.useEffect(()=>{
-    SetRandomColor()
     setStyle({backgroundColor: small?`#${RandomColor[index]}`:"#FFFFFF"})
   },[Random])
 
   const meow = () => {
 
     if(small){
-      SetRandomColor()
+      return
     }
 
     else{

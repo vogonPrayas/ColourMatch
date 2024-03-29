@@ -1,14 +1,24 @@
 import { create } from "zustand";
 
 export interface State {
+
     color: string;
     updateColor: (newColor: string) => void;
+
     finalColor: string[];
     getColor: (index: number,col:string) => void;
+
     RandomColor: string[]; // Added RandomColor property
     SetRandomColor: () => void;
+
     timer:number;
-    setTimer:(time:number)=>void
+    setTimer:(time:number)=>void;
+
+    gameOver:boolean;
+    setGameOver:(game:boolean)=>void;
+
+    won:boolean;
+    setWon:()=>void
 }
 
 const Suffle =(col:string[]):string[]=>{
@@ -39,7 +49,15 @@ const useStore = create<State>((set) => ({
     SetRandomColor: () =>set({ RandomColor: Suffle(RandomColors)}) ,
 
     timer:0,
-    setTimer:(time:number)=>set({timer:time+1})
+    setTimer:(time:number)=>set({timer:time+1}),
+
+    gameOver:false,
+    setGameOver:(game:boolean)=>set({gameOver:!game}),
+
+    won:false,
+    setWon:()=>set({won:true})
+
+
 }));
 
 export default useStore;

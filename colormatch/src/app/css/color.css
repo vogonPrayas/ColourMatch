@@ -5,12 +5,12 @@
     margin-top: 45px;
     margin-left: 30px;
 }
+
 .Rcon{
     display: flex;
-    /* justify-content: space-between;
-    align-items: center; */
 }
+
 .color:hover{
     transform: translateX(3px);
-    
+    cursor: pointer;
 }

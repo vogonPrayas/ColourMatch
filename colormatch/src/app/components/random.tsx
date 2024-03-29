@@ -15,12 +15,14 @@ for (let i = 0; i < 25; i++) {
   
 
 const Random = () => {
+  
   const[Random,setRandom]=React.useState(false)
   console.log(array)
   const {SetRandomColor}=useStore() as State
 
   const random=()=>{
     setRandom(!Random)
+    SetRandomColor()
   }
   return (
     <div className="RandomCon">

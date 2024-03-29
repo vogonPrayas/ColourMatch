@@ -15,6 +15,7 @@
 
 .box:hover{
     opacity: 87%;
+    cursor: pointer;
 }
 .Sbox{
     background-color: #D9D9D9;

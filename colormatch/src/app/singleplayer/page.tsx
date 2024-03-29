@@ -4,6 +4,8 @@ import Box from '../components/box';
 import Colors from '../components/colors';
 import Random from '../components/random';
 import Timer from '../components/timer';
+import Gameover from '../components/gameover';
+
 import "../css/singleplayer.css";
 import "../css/button.css"
 
@@ -18,28 +20,34 @@ for (let i = 0; i < 25; i++) {
 
 const Page: React.FC = () => {
 
-  const {color,finalColor,getColor,RandomColor}=useStore() as State
-    const go=()=>{
-      let COUNT=0
-      console.log(finalColor)
-      
-        for(let i=0;i<RandomColor.length;i++){
+  const check=()=>{
+    let COUNT=0
+    for(let i=0;i<RandomColor.length;i++){
           if(finalColor[i]==RandomColor[i]){
             COUNT+=1
             console.log(finalColor[i],RandomColor[i])
-            console.log(COUNT)
+            
           }
         }
         if(COUNT==RandomColor.length){
-          console.log("milyo")
+          setWon()
         }
-        else{
-          console.log("milena")
-        }
+  }
+
+  const {color,finalColor,getColor,RandomColor,gameOver,setGameOver,setWon,won}=useStore() as State
+    const go=()=>{
+
+      setGameOver(gameOver)
+      check()
+      console.log(finalColor,RandomColor)
+      console.log(won)
+        
     }
+
 
   return (
     <>
+    
       <Timer/>
     <div className="con">
       <div className="ColBoxcon">
@@ -51,6 +59,9 @@ const Page: React.FC = () => {
         <Random></Random>
     </div>
       <div onClick={go} className="button sButton">finish</div>
+
+      {gameOver?<Gameover/>:""}
+      
     </>
   );
 }
