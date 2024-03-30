@@ -10,7 +10,7 @@ const Timer = () => {
         
         if(!gameOver){
           const intervalId = setInterval(() => {
-            setTimer(timer);
+            setTimer(timer+1);
           }, 500);
         
           return () => clearInterval(intervalId);

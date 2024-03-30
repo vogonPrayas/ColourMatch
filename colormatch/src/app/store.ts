@@ -18,7 +18,10 @@ export interface State {
     setGameOver:(game:boolean)=>void;
 
     won:boolean;
-    setWon:()=>void
+    setWon:(bool:boolean)=>void;
+
+    New:boolean;
+    setNew:(bool:boolean)=>void;
 }
 
 const Suffle =(col:string[]):string[]=>{
@@ -49,13 +52,16 @@ const useStore = create<State>((set) => ({
     SetRandomColor: () =>set({ RandomColor: Suffle(RandomColors)}) ,
 
     timer:0,
-    setTimer:(time:number)=>set({timer:time+1}),
+    setTimer:(time:number)=>set({timer:time}),
 
     gameOver:false,
     setGameOver:(game:boolean)=>set({gameOver:!game}),
 
     won:false,
-    setWon:()=>set({won:true})
+    setWon:(bool)=>set({won:bool}),
+    
+    New:false,
+    setNew:(bool)=>set({New:bool})
 
 
 }));

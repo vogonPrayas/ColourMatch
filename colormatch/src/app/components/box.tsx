@@ -4,16 +4,16 @@ import "../css/box.css"
 import useStore from "../store"
 import { State } from "../store"
 
-const Box = ({ index,small,Random}: { index: number,small:boolean,Random:boolean}) => {
-  const { color,getColor,finalColor,RandomColor,SetRandomColor } = useStore() as State
+const Box = ({ index,small}: { index: number,small:boolean}) => {
+  const { color,getColor,finalColor,RandomColor,SetRandomColor,New} = useStore() as State
 
   const [style, setStyle] = React.useState({
-    backgroundColor: small?`#${RandomColor[index]}`:"#FFFFFF"
+    backgroundColor: "#FFFFFF"
   })
 
   React.useEffect(()=>{
     setStyle({backgroundColor: small?`#${RandomColor[index]}`:"#FFFFFF"})
-  },[Random])
+  },[New])
 
   const meow = () => {
 

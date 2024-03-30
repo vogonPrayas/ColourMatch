@@ -5,7 +5,6 @@ import { State } from '../store';
 
 import "../css/randomBox.css"
 import "../css/button.css"
-import { read } from 'fs';
 
 const array: number[] = [];
 
@@ -15,19 +14,18 @@ for (let i = 0; i < 25; i++) {
   
 
 const Random = () => {
-  
-  const[Random,setRandom]=React.useState(false)
   console.log(array)
-  const {SetRandomColor}=useStore() as State
+  const {SetRandomColor,New,setNew}=useStore() as State
 
-  const random=()=>{
-    setRandom(!Random)
+  const random=()=>{ 
     SetRandomColor()
+    setNew(!New)
   }
+
   return (
     <div className="RandomCon">
       <div className="RandomContainer">
-            {array.map(name => (<Box key={name} index={name} small={true} Random={Random}/>))}
+            {array.map(name => (<Box key={name} index={name} small={true}/>))}
       </div>
 
       <div className="button sButton center" onClick={random}>NEW</div>

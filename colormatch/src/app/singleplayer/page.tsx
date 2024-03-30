@@ -22,26 +22,32 @@ const Page: React.FC = () => {
 
   const check=()=>{
     let COUNT=0
+
     for(let i=0;i<RandomColor.length;i++){
+
           if(finalColor[i]==RandomColor[i]){
             COUNT+=1
             console.log(finalColor[i],RandomColor[i])
-            
           }
+
         }
+
         if(COUNT==RandomColor.length){
-          setWon()
+          setWon(true)
+          console.log("Jityo")
+        }
+        else{
+          console.log("Haryo")
         }
   }
 
-  const {color,finalColor,getColor,RandomColor,gameOver,setGameOver,setWon,won}=useStore() as State
-    const go=()=>{
+  const {color,finalColor,getColor,RandomColor,gameOver,setGameOver,setWon,won,timer}=useStore() as State
 
+    const go=()=>{
       setGameOver(gameOver)
       check()
       console.log(finalColor,RandomColor)
       console.log(won)
-        
     }
 
 
@@ -53,7 +59,7 @@ const Page: React.FC = () => {
       <div className="ColBoxcon">
         <div><Colors /></div> 
         <div className="container">
-          {array.map(name => (<Box key={name} index={name}small={false}/>))}</div>  
+          {array.map(name => (<Box key={name} index={name} small={false}/>))}</div>  
         </div>
         <div className="border"> </div>
         <Random></Random>
