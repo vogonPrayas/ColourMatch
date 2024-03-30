@@ -8,14 +8,22 @@
     min-width: 100px;
     border-radius: 8px;
 }
+
 .sButton{
     min-width: fit-content;
     padding: 10px 30px;
 }
+
+.find{
+    margin-left: 35%;
+    /* margin: auto; */
+}
+
 .button:hover{
     background-color: #15191fe4;
     cursor: pointer;
 }
+
 .hcontainer{
 
     display: flex;

@@ -14,3 +14,15 @@
     transform: translateX(3px);
     cursor: pointer;
 }
+
+
+@media screen and (max-width: 650px) {
+    .Ccontainer{
+        display: flex;
+        flex-direction: row;
+    }
+    .color:hover{
+        transform: translateY(3px);
+        cursor: pointer;
+    }
+}
