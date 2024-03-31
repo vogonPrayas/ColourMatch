@@ -9,10 +9,6 @@ const Color = ({colors}:{colors:string}) => {
 
 const style={
     backgroundColor:`#${colors}`,
-    width:"40px",
-    height:"40px",
-    margin:"10px",
-    borderRadius:"8px",
 }
 
 const onColor=()=>{

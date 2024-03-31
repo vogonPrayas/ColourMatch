@@ -56,16 +56,16 @@ const Page: React.FC = () => {
     
       <Timer/>
     <div className="con">
-      <Colors />
+      
       <div className="ColBoxcon">
-        
+        <Colors />
         <div className="container">
           {array.map(name => (<Box key={name} index={name} small={false}/>))}</div>  
       </div>
         <div className="border"> </div>
         <Random></Random>
     </div>
-      <div onClick={go} className="button sButton find">finish</div>
+      <div onClick={go} className="button sButton finish">finish</div>
 
       {gameOver?<Gameover/>:""}
       

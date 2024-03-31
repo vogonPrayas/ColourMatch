@@ -10,18 +10,20 @@
 .container{
     margin-top: 50px;
     background-color: none;
+    margin: auto;
 }
 
 
 .ColBoxcon{
-    /* display: flex;
-    justify-content: space-around; */
-    /* flex-wrap: wrap; */
+    display: flex;
+    justify-content: space-around;
+    gap:20px;
+    flex-wrap: wrap; 
 }
 .con{
     display: flex;
     justify-content: space-around;
-    flex-wrap: wrap-reverse;
+    flex-wrap: wrap;
 }
 
 .border{
@@ -34,8 +36,18 @@
 
 @media screen and (max-width: 650px) {
     .border{
-        transform: rotate(90deg);
+        display: none;
     }
-
+    .ColBoxcon{
+        display: flex;
+        justify-content: space-evenly;
+        gap:20px;
+        flex-direction: column;
+    }
+    .con{
+        display: flex;
+        justify-content: space-evenly;
+        flex-direction: column;
+    }
 }
   

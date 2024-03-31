@@ -10,3 +10,9 @@
     margin: auto;
     margin-top: 20px;
 }
+@media screen and (max-width: 650px) {
+    .RandomContainer{
+        margin-top:20px;
+    }
+
+}
