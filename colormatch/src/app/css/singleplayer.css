@@ -1,12 +1,3 @@
-.time{
-    text-align: center;
-    font-weight: bold;
-    padding: 10px 0px;
-    color: aliceblue;
-    background-color: #15191f;
-    font-size: clamp(16px,3vw,40px);
-}
-
 .container{
     margin-top: 50px;
     background-color: none;

@@ -1,6 +1,5 @@
 .button{
-    background-color: #15191f94;
-    color: aliceblue;
+    
     padding:30px;
     font-weight: bold;
     text-decoration: none;
@@ -8,24 +7,34 @@
     min-width: 100px;
     border-radius: 8px;
 }
-
+.darkButton{
+    background-color: #15191f94;
+    color: aliceblue;
+    cursor: pointer;
+}
+.lightButton{
+    background-color: #F1EEDC;
+    color:#58554D ;
+    cursor: pointer;
+}
+.lightButton:hover{
+    background-color: rgb(222, 218, 200)
+}
 .sButton{
     min-width: fit-content;
     padding: 10px 30px;
 }
-
 .finish{
     margin-left: 25%;
     /* margin: auto; */
 }
 
-.button:hover{
+.darkButton:hover{
     background-color: #15191fe4;
     cursor: pointer;
 }
 
 .hcontainer{
-
     display: flex;
     flex-direction: column;
     gap: 50px; 

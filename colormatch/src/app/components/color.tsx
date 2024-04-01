@@ -5,7 +5,7 @@ import useStore from '../store'
 import {State} from "../store"
 const Color = ({colors}:{colors:string}) => {
 
-  const { color,updateColor } = useStore() as State;
+const { color,updateColor } = useStore() as State;
 
 const style={
     backgroundColor:`#${colors}`,

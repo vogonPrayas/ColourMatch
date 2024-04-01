@@ -1,9 +1,10 @@
 import React from 'react'
 import useStore from '../store'
 import { State } from '../store'
+import "../css/timer.css"
 
 const Timer = () => {
-    const {timer,setTimer,gameOver}=useStore() as State
+    const {timer,setTimer,gameOver,lightMode}=useStore() as State
 
     
       React.useEffect(() => {
@@ -17,9 +18,14 @@ const Timer = () => {
         }
 
         }, [timer]);
+
+      const style={
+        backgroundColor:lightMode?"#BED7DC":"#15191f",
+        color:lightMode?"#58554D":"aliceblue"
+      }
   
   return (
-    <div className='time'>{timer}</div>
+    <div className='time' style={style}>{timer}</div>
   )
 }
 

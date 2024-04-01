@@ -1,5 +1,4 @@
 .Ccontainer{
-    background-color: #1c2028;
     padding: 20px 0px;
     border-radius: 10px;
     margin-top: 45px;
@@ -7,6 +6,12 @@
     margin: auto;
 }
 
+.lightCcontainer{
+    background-color: #BED7DC;
+}
+.darkCcontainer{
+    background-color: #1c2028;
+}
 .Rcon{
     display: flex;
 }

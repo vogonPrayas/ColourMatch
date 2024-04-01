@@ -15,7 +15,7 @@ for (let i = 0; i < 25; i++) {
 
 const Random = () => {
   console.log(array)
-  const {SetRandomColor,New,setNew}=useStore() as State
+  const {SetRandomColor,New,setNew,lightMode}=useStore() as State
 
   const random=()=>{ 
     SetRandomColor()
@@ -28,7 +28,7 @@ const Random = () => {
             {array.map(name => (<Box key={name} index={name} small={true}/>))}
       </div>
 
-      <div className="button sButton center" onClick={random}>NEW</div>
+      <div className={`button sButton center ${lightMode ? "lightButton" : "darkButton"}`} onClick={random}>NEW</div>
     </div>
   )
 }

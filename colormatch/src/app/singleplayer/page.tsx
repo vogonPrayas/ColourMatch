@@ -4,6 +4,7 @@ import Box from '../components/box';
 import Colors from '../components/colors';
 import Random from '../components/random';
 import Timer from '../components/timer';
+
 import Gameover from '../components/gameover';
 
 import "../css/singleplayer.css";
@@ -39,9 +40,10 @@ const Page: React.FC = () => {
         else{
           console.log("Haryo")
         }
+        
   }
 
-  const {color,finalColor,getColor,RandomColor,gameOver,setGameOver,setWon,won,timer}=useStore() as State
+  const {color,finalColor,getColor,RandomColor,gameOver,setGameOver,setWon,won,timer,lightMode}=useStore() as State
 
     const go=()=>{
       setGameOver(gameOver)
@@ -65,7 +67,7 @@ const Page: React.FC = () => {
         <div className="border"> </div>
         <Random></Random>
     </div>
-      <div onClick={go} className="button sButton finish">finish</div>
+      <div onClick={go} className={`button sButton finish ${lightMode ? "lightButton" : "darkButton"}`}>FINISH</div>
 
       {gameOver?<Gameover/>:""}
       

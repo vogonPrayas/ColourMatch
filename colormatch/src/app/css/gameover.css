@@ -14,11 +14,15 @@
 .flexCon{
     margin: auto;
     margin-top: 10px;
-    background-color: rgba(0, 0, 0, 0.388);
     width: 40%;
     padding: 30px;
     border-radius:20px ;
 }
+.lightflexCon{
+    color: #58554D;
+    background-color: rgba(199, 2s46, 255, 0.388);
+}
+
 
 .flexCon2{
     margin-top: 60px;

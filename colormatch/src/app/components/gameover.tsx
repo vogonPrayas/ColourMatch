@@ -2,9 +2,12 @@ import React from 'react'
 import "../css/gameover.css"
 import useStore from '../store'
 import { State } from '../store'
+import { useRouter } from 'next/navigation';
 const Gameover = () => {
+
+    const router = useRouter();
     
-    const{timer,gameOver,setGameOver,won,setWon}=useStore() as State
+    const{timer,gameOver,setGameOver,won,setWon,lightMode,setTimer}=useStore() as State
     const [score,setScore]=React.useState(timer)
 
     if(parseInt(localStorage.getItem("highScore")||`200000`) > score){
@@ -15,10 +18,10 @@ const Gameover = () => {
          
     }
 
-
     const restart=()=>{
         setGameOver(gameOver)
-        window.location.reload()
+        router.push('/singleplayer');
+        setTimer(0)
     }
 
   return (
@@ -30,7 +33,7 @@ const Gameover = () => {
 
                 {won?<div className="score">{score}</div>:""}
 
-                <div className="restart button" onClick={restart}>RESTART</div>
+                <div className={`button restart ${lightMode ? "lightButton" : "darkButton"}`}onClick={restart}>RESTART</div>
                 <div className="highScoreText">High Score</div>
                 <div className="highScore">{localStorage.getItem("highScore")}</div>
 

@@ -22,6 +22,9 @@ export interface State {
 
     New:boolean;
     setNew:(bool:boolean)=>void;
+
+    lightMode:boolean;
+    setMode:(bool:boolean)=>void
 }
 
 const Suffle =(col:string[]):string[]=>{
@@ -34,6 +37,16 @@ const Suffle =(col:string[]):string[]=>{
 const RandomCol = ["F78787", "F5F197", "98F597", "97F5DE", "97ABF5", "F597EB"];
 const initialColors: string[] = Array.from({ length: 25 }, () => "#EEEEEE");
 const RandomColors: string[] = Suffle(RandomCol)
+
+let light:boolean
+
+if(localStorage.getItem("mode")==="true")
+{
+    light=true
+}
+else{
+    light=false
+}
 
 const useStore = create<State>((set) => ({
     color: "",
@@ -61,8 +74,10 @@ const useStore = create<State>((set) => ({
     setWon:(bool)=>set({won:bool}),
     
     New:false,
-    setNew:(bool)=>set({New:bool})
+    setNew:(bool)=>set({New:bool}),
 
+    lightMode:light,
+    setMode:(bool)=>set({lightMode:!bool})
 
 }));
 
