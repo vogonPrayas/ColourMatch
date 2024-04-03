@@ -2,12 +2,10 @@ import React from 'react'
 import "../css/gameover.css"
 import useStore from '../store'
 import { State } from '../store'
-import { useRouter } from 'next/navigation';
 const Gameover = () => {
 
-    const router = useRouter();
     
-    const{timer,gameOver,setGameOver,won,setWon,lightMode,setTimer}=useStore() as State
+    const{timer,gameOver,setGameOver,won,setWon,lightMode,setTimer,SetRandomColor,setNew}=useStore() as State
     const [score,setScore]=React.useState(timer)
 
     if(parseInt(localStorage.getItem("highScore")||`200000`) > score){
@@ -18,9 +16,11 @@ const Gameover = () => {
          
     }
 
+
     const restart=()=>{
         setGameOver(gameOver)
-        router.push('/singleplayer');
+        setNew(false)
+        location.reload()
         setTimer(0)
     }
 

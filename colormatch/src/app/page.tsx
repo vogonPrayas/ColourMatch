@@ -5,7 +5,7 @@ import "./css/menu.css"
 import "./css/button.css"
 import useStore from "./store";
 import { State } from "./store";
-import Lightmode from "../lightmode.svg"
+
 export default function Home() {
 
   const {lightMode,setMode}=useStore() as State
@@ -14,13 +14,11 @@ export default function Home() {
     fill:lightMode?"#E5DDC5":"#323232",
     transition:"fill 0.2s" 
   }
+
   const click =()=>{
     setMode(lightMode)
-    localStorage.setItem("mode",`${lightMode}`)
-  }
-
-  const bgcolor=()=>{
-
+    localStorage.setItem("darkMode",`${lightMode}`)
+    console.log(localStorage.getItem("mode"))
   }
 
   return (

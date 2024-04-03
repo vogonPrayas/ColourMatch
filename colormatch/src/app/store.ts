@@ -24,7 +24,9 @@ export interface State {
     setNew:(bool:boolean)=>void;
 
     lightMode:boolean;
-    setMode:(bool:boolean)=>void
+    setMode:(bool:boolean)=>void;
+
+    restartColor:()=>void
 }
 
 const Suffle =(col:string[]):string[]=>{
@@ -33,6 +35,7 @@ const Suffle =(col:string[]):string[]=>{
     )
 }
 
+
 // Create an initial array of 30 white colors
 const RandomCol = ["F78787", "F5F197", "98F597", "97F5DE", "97ABF5", "F597EB"];
 const initialColors: string[] = Array.from({ length: 25 }, () => "#EEEEEE");
@@ -40,12 +43,12 @@ const RandomColors: string[] = Suffle(RandomCol)
 
 let light:boolean
 
-if(localStorage.getItem("mode")==="true")
+if(localStorage.getItem("darkMode")=='true')
 {
-    light=true
+    light=false
 }
 else{
-    light=false
+    light=true
 }
 
 const useStore = create<State>((set) => ({
@@ -60,7 +63,8 @@ const useStore = create<State>((set) => ({
             return { finalColor: updatedColors };
         });
     },
-
+    restartColor:()=>set({ finalColor:Array.from({ length: 25 }, () => "#EEEEEE")}),
+    
     RandomColor: RandomColors,
     SetRandomColor: () =>set({ RandomColor: Suffle(RandomColors)}) ,
 
@@ -77,7 +81,9 @@ const useStore = create<State>((set) => ({
     setNew:(bool)=>set({New:bool}),
 
     lightMode:light,
-    setMode:(bool)=>set({lightMode:!bool})
+    setMode:(bool)=>set({lightMode:!bool}),
+
+    
 
 }));
 
