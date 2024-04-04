@@ -1,55 +1,59 @@
 import { create } from "zustand";
+import { io } from 'socket.io-client';
+
+let socket = io('http://localhost:3001'); // Connect to your Socket.IO server
+
+console.log("meow")
 
 export interface State {
-
     color: string;
     updateColor: (newColor: string) => void;
 
     finalColor: string[];
-    getColor: (index: number,col:string) => void;
+    getColor: (index: number, col: string) => void;
 
-    RandomColor: string[]; // Added RandomColor property
+    RandomColor: string[];
     SetRandomColor: () => void;
 
-    timer:number;
-    setTimer:(time:number)=>void;
+    timer: number;
+    setTimer: (time: number) => void;
 
-    gameOver:boolean;
-    setGameOver:(game:boolean)=>void;
+    gameOver: boolean;
+    setGameOver: (game: boolean) => void;
 
-    won:boolean;
-    setWon:(bool:boolean)=>void;
+    won: boolean;
+    setWon: (bool: boolean) => void;
 
-    New:boolean;
-    setNew:(bool:boolean)=>void;
+    New: boolean;
+    setNew: (bool: boolean) => void;
 
-    lightMode:boolean;
-    setMode:(bool:boolean)=>void;
+    lightMode: boolean;
+    setMode: (bool: boolean) => void;
 
-    restartColor:()=>void
+    restartColor: () => void;
 }
 
-const Suffle =(col:string[]):string[]=>{
-    return(
+const Suffle = (col: string[]): string[] => {
+    return (
         Array.from({ length: 25 }, () => col[Math.floor(Math.random() * col.length)])
     )
 }
 
-
-// Create an initial array of 30 white colors
 const RandomCol = ["F78787", "F5F197", "98F597", "97F5DE", "97ABF5", "F597EB"];
 const initialColors: string[] = Array.from({ length: 25 }, () => "#EEEEEE");
-const RandomColors: string[] = Suffle(RandomCol)
+const RandomColors: string[] = Suffle(RandomCol);
 
-let light:boolean
+let light: boolean;
 
-if(localStorage.getItem("darkMode")=='true')
-{
-    light=false
+if (localStorage.getItem("darkMode") == 'true') {
+    light = false;
+} else {
+    light = true;
 }
-else{
-    light=true
-}
+
+socket.on("call",(data)=>{
+    console.log(data)
+})
 
 const useStore = create<State>((set) => ({
     color: "",
@@ -60,31 +64,32 @@ const useStore = create<State>((set) => ({
         set((state) => {
             const updatedColors = [...state.finalColor];
             updatedColors[index] = col;
+            socket.emit('colors', updatedColors)
+            console.log("hehe")
             return { finalColor: updatedColors };
         });
     },
-    restartColor:()=>set({ finalColor:Array.from({ length: 25 }, () => "#EEEEEE")}),
-    
+    restartColor: () => set({ finalColor: Array.from({ length: 25 }, () => "#EEEEEE") }),
+
     RandomColor: RandomColors,
-    SetRandomColor: () =>set({ RandomColor: Suffle(RandomColors)}) ,
+    SetRandomColor: () => {
+        set({ RandomColor: Suffle(RandomColors) });
+    },
 
-    timer:0,
-    setTimer:(time:number)=>set({timer:time}),
+    timer: 0,
+    setTimer: (time: number) => set({ timer: time }),
 
-    gameOver:false,
-    setGameOver:(game:boolean)=>set({gameOver:!game}),
+    gameOver: false,
+    setGameOver: (game: boolean) => set({ gameOver: !game }),
 
-    won:false,
-    setWon:(bool)=>set({won:bool}),
-    
-    New:false,
-    setNew:(bool)=>set({New:bool}),
+    won: false,
+    setWon: (bool) => set({ won: bool }),
 
-    lightMode:light,
-    setMode:(bool)=>set({lightMode:!bool}),
+    New: false,
+    setNew: (bool) => set({ New: bool }),
 
-    
-
+    lightMode: light,
+    setMode: (bool) => set({ lightMode: !bool }),
 }));
 
 export default useStore;

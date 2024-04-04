@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "cors": "^2.8.5",
     "nodemon": "^3.1.0",
     "socket.io": "^4.7.5"
   },
@@ -7,8 +8,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "type": "module",
-  "start":"nodemon server.js", 
-   "scripts": {
+  "start": "nodemon server.js",
+  "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

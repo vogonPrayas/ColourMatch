@@ -1,18 +1,27 @@
 import { Server } from 'socket.io';
 import http from 'http';
 
-// Create an HTTP server instance
 const httpServer = http.createServer();
-
-// Pass the HTTP server instance to the Socket.IO server constructor
-const io = new Server(httpServer);
-
-// Handle connections
-io.on("connection", (socket) => {
-    console.log("hello");
+const io = new Server(httpServer, {
+    cors: {
+        origin: '*',
+        methods: ['GET', 'POST']
+    }
 });
 
-// Start the HTTP server listening on port 3001
+io.on("connection", (socket) => {
+    socket.emit("welcome", "welcome from server");
+
+    socket.on("lado",(data)=>{
+        console.log(data)
+    })
+    socket.on('colors', (data) => {
+        console.log(data, socket.id);
+        console.log("hoasd")
+        socket.broadcast.emit("call",data)
+    });
+});
+
 httpServer.listen(3001, () => {
     console.log("Socket.IO server listening on port 3001");
 });

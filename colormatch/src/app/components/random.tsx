@@ -14,7 +14,6 @@ for (let i = 0; i < 25; i++) {
   
 
 const Random = () => {
-  console.log(array)
   const {SetRandomColor,New,setNew,lightMode}=useStore() as State
 
   const random=()=>{ 
