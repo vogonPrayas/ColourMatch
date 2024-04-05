@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import React from "react";
 import { io } from 'socket.io-client';
 
 let socket = io('http://localhost:3001'); // Connect to your Socket.IO server
@@ -31,6 +32,9 @@ export interface State {
     setMode: (bool: boolean) => void;
 
     restartColor: () => void;
+
+    other:string[];
+    setOther:(col: string[]) => void;
 }
 
 const Suffle = (col: string[]): string[] => {
@@ -51,9 +55,6 @@ if (localStorage.getItem("darkMode") == 'true') {
     light = true;
 }
 
-socket.on("call",(data)=>{
-    console.log(data)
-})
 
 const useStore = create<State>((set) => ({
     color: "",
@@ -90,6 +91,24 @@ const useStore = create<State>((set) => ({
 
     lightMode: light,
     setMode: (bool) => set({ lightMode: !bool }),
+
+    other:initialColors,
+    setOther: (col) => {
+        set({ other: col });
+    },
 }));
 
+const useSocketListener = () => {
+    React.useEffect(() => {
+      socket.on('call', (data) => {
+        useStore.getState().setOther(data);
+      });
+  
+      return () => {
+        socket.off('call');
+      };
+    }, []);
+  };
+
 export default useStore;
+export { useSocketListener };

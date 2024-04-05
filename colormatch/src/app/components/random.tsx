@@ -11,7 +11,6 @@ const array: number[] = [];
 for (let i = 0; i < 25; i++) {
     array.push(i);
   }
-  
 
 const Random = () => {
   const {SetRandomColor,New,setNew,lightMode}=useStore() as State
@@ -24,7 +23,7 @@ const Random = () => {
   return (
     <div className="RandomCon">
       <div className="RandomContainer">
-            {array.map(name => (<Box key={name} index={name} small={true}/>))}
+            {array.map(name => (<Box key={name} index={name} small={true} multiPlayer={false}/>))}
       </div>
 
       <div className={`button sButton center ${lightMode ? "lightButton" : "darkButton"}`} onClick={random}>NEW</div>

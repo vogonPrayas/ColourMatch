@@ -1,28 +1,31 @@
-import React, { useEffect, useState } from 'react';
-import "../css/box.css";
-import useStore from "../store";
-import { State } from "../store";
+"use client"
 
+import React from 'react'
+import "../css/box.css"
+import useStore from "../store"
+import { State } from "../store"
 
-const Box = ({ index, small }: { index: number, small: boolean }) => {
-  const { color, getColor, finalColor, RandomColor, SetRandomColor, New } = useStore() as State;
-  
-  const [style, setStyle] = useState({
+const Box = ({ index,small,multiPlayer}: { index: number,small:boolean,multiPlayer:boolean}) => {
+  const { color,getColor,finalColor,RandomColor,SetRandomColor,New} = useStore() as State
+  const [style, setStyle] = React.useState({
     backgroundColor: "#FFFFFF"
-  });
+  })
+
+  React.useEffect(()=>{
+    setStyle({backgroundColor: small==true && multiPlayer==false?`#${RandomColor[index]}`:"#FFFFFF"})
+  },[New])
 
   const meow = () => {
-    if (small) {
-      return;
-    } else {
-      setStyle({ backgroundColor: `#${color}` });
+    if(small && multiPlayer){
+      return
     }
-    getColor(index, color);
+    else{
+    setStyle({ backgroundColor: `#${color}`})
   }
-
+    getColor(index,color)
+  }
   return (
-    <div className={small ? 'Sbox' : "box"} style={style} onClick={meow}></div>
+    <div className={small?'Sbox':"box"} style={style} onClick={meow}></div>
   )
 }
-
-export default Box;
+export default Box

@@ -4,14 +4,14 @@ import Box from '../components/box';
 import Colors from '../components/colors';
 import Random from '../components/random';
 import Timer from '../components/timer';
-
 import Gameover from '../components/gameover';
+import MultiplayerBox from '../components/MultiplayerBox';
 
 import "../css/singleplayer.css";
 import "../css/button.css"
 
 import useStore from '../store'
-import { State } from '../store'
+import { State,useSocketListener } from '../store'
 
 const array: number[] = [];
 
@@ -20,6 +20,8 @@ for (let i = 0; i < 25; i++) {
 }
 
 const Page: React.FC = () => {
+
+  useSocketListener()
 
   const check=()=>{
     let COUNT=0
@@ -62,7 +64,7 @@ const Page: React.FC = () => {
       <div className="ColBoxcon">
         <Colors />
         <div className="container">
-          {array.map(name => (<Box key={name} index={name} small={false}/>))}</div>  
+          {array.map(name => (<Box key={name} index={name} small={false} multiPlayer={false}/>))}</div>  
       </div>
         <div className="border"> </div>
         <Random></Random>
@@ -70,7 +72,7 @@ const Page: React.FC = () => {
       <div onClick={go} className={`button sButton finish ${lightMode ? "lightButton" : "darkButton"}`}>FINISH</div>
 
       {gameOver?<Gameover/>:""}
-      
+      <MultiplayerBox/>
     </>
   );
 }
