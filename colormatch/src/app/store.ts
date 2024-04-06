@@ -1,11 +1,13 @@
 import { create } from "zustand";
 import React from "react";
-import { io } from 'socket.io-client';
+import { io,Socket } from 'socket.io-client';
 
 let socket = io('http://localhost:3001'); // Connect to your Socket.IO server
 
-console.log("meow")
 
+socket.on('welcome',(data)=>{
+    console.log(data ,"hehpqwhd")
+  })
 export interface State {
     color: string;
     updateColor: (newColor: string) => void;
@@ -35,6 +37,14 @@ export interface State {
 
     other:string[];
     setOther:(col: string[]) => void;
+
+    randomColorMP:string[];
+    setRandomMP:(data:string[])=>void;
+
+    name:string,
+    setName:(data:string)=>void,
+
+    socket:Socket
 }
 
 const Suffle = (col: string[]): string[] => {
@@ -49,13 +59,15 @@ const RandomColors: string[] = Suffle(RandomCol);
 
 let light: boolean;
 
-if (localStorage.getItem("darkMode") == 'true') {
-    light = false;
-} else {
-    light = true;
-}
-
-
+// if (typeof window !== 'undefined') {
+  if (localStorage.getItem("darkMode") == 'true') {
+      light = false;
+  } else {
+      light = true;
+  }
+// } else {
+//   light = true;
+// }
 const useStore = create<State>((set) => ({
     color: "",
     updateColor: (newColor: string) => set({ color: newColor }),
@@ -96,16 +108,28 @@ const useStore = create<State>((set) => ({
     setOther: (col) => {
         set({ other: col });
     },
+    randomColorMP:[""],
+    setRandomMP:(data)=>set({randomColorMP:data}),
+
+    name:"",
+    setName:(data)=>set({name:data}),
+    socket:socket
 }));
 
 const useSocketListener = () => {
     React.useEffect(() => {
       socket.on('call', (data) => {
+        console.log("lado kha bhai")
         useStore.getState().setOther(data);
       });
-  
+      socket.on('welcome',(data)=>{
+        useStore.getState().setRandomMP(data);
+        console.log(data ,"hehpqwhd")
+      })
+
       return () => {
         socket.off('call');
+        socket.off('welcome');
       };
     }, []);
   };

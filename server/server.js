@@ -1,6 +1,15 @@
 import { Server } from 'socket.io';
 import http from 'http';
 
+const Suffle = (col) => {
+    return (
+        Array.from({ length: 25 }, () => col[Math.floor(Math.random() * col.length)])
+    )
+}
+const RandomCol = ["F78787", "F5F197", "98F597", "97F5DE", "97ABF5", "F597EB"];
+
+
+
 const httpServer = http.createServer();
 const io = new Server(httpServer, {
     cors: {
@@ -9,15 +18,14 @@ const io = new Server(httpServer, {
     }
 });
 
-io.on("connection", (socket) => {
-    socket.emit("welcome", "welcome from server");
 
-    socket.on("lado",(data)=>{
-        console.log(data)
-    })
+io.on("connection", (socket) => {
+    const randomcol=Suffle(RandomCol)
+    io.emit('welcome',randomcol )
     socket.on('colors', (data) => {
-        console.log(data, socket.id);
-        console.log("hoasd")
+        // console.log(data, socket.id);
+        // console.log("hoasd")
+        
         socket.broadcast.emit("call",data)
     });
 });

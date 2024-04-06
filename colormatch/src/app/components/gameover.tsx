@@ -4,16 +4,13 @@ import useStore from '../store'
 import { State } from '../store'
 const Gameover = () => {
 
-    
     const{timer,gameOver,setGameOver,won,setWon,lightMode,setTimer,SetRandomColor,setNew}=useStore() as State
     const [score,setScore]=React.useState(timer)
 
     if(parseInt(localStorage.getItem("highScore")||`200000`) > score){
-
         if(won){
         localStorage.setItem("highScore",`${score}`)
         }
-         
     }
 
 
