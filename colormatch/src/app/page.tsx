@@ -21,9 +21,12 @@ export default function Home() {
     setMode(lightMode)
     localStorage.setItem("darkMode",`${lightMode}`)
     console.log(localStorage.getItem("mode"))
-
   }
 
+  // React.useEffect(()=>{
+  //   localStorage.setItem("darkMode",`${lightMode}`)
+  // },[])
+  
   return (
     <>
     <div className="MainTop">

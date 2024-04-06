@@ -44,6 +44,9 @@ export interface State {
     name:string,
     setName:(data:string)=>void,
 
+    type:string,
+    setType:(data:string)=>void,
+
     socket:Socket
 }
 
@@ -59,15 +62,22 @@ const RandomColors: string[] = Suffle(RandomCol);
 
 let light: boolean;
 
-// if (typeof window !== 'undefined') {
-  if (localStorage.getItem("darkMode") == 'true') {
+  if (localStorage.getItem("darkMode") === 'true') {
       light = false;
   } else {
       light = true;
   }
+
+// if (typeof window !== 'undefined') {
+//   if (localStorage.getItem("darkMode") === 'true') {
+//     light = false;
+//   } else {
+//     light = true;
+//   }
 // } else {
 //   light = true;
 // }
+
 const useStore = create<State>((set) => ({
     color: "",
     updateColor: (newColor: string) => set({ color: newColor }),
@@ -113,6 +123,10 @@ const useStore = create<State>((set) => ({
 
     name:"",
     setName:(data)=>set({name:data}),
+
+    type:"",
+    setType:(data)=>set({type:data}),
+
     socket:socket
 }));
 
