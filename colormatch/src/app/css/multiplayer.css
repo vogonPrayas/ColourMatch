@@ -10,6 +10,7 @@
     flex-direction: column;
     gap:30px;
     align-items: center;
+    margin-top: 3%;
 }
 .name{
     margin-top: 20px;

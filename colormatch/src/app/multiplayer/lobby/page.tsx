@@ -13,10 +13,19 @@ const page = () => {
     const style={
       color:lightMode ?"#58554D":"white"
   }
+  
   return (
     <>
+    <div className="LobbyCon">
       <div className="name" style={style}>{name}</div>
+      {/* {type=="JOIN"?
+      <>
+        <div className={`button sButton  ${lightMode ? "lightButton" : "darkButton"}`}>{type}</div>
+      </>:
+      ""} */}
+      <input type="text" placeholder='code' style={style}/>
       <div className={`button sButton  ${lightMode ? "lightButton" : "darkButton"}`}>{type}</div>
+      </div>
     </>
   )
 }
