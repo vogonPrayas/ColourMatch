@@ -10,7 +10,6 @@ const Suffle = (col) => {
 const RandomCol = ["F78787", "F5F197", "98F597", "97F5DE", "97ABF5", "F597EB"];
 
 
-
 const httpServer = http.createServer();
 const io = new Server(httpServer, {
     cors: {
@@ -19,13 +18,32 @@ const io = new Server(httpServer, {
     }
 });
 
-
+let name=[]
 io.on("connection", (socket) => {
+    
     const randomcol=Suffle(RandomCol)
     io.emit('welcome',randomcol )
+    
     socket.on('colors', (data) => {
         socket.broadcast.emit("call",data)
+        
     });
+    
+    socket.on("join",(prop)=>{
+        socket.join(prop.code)
+        io.emit("Meo","hello lampo")
+        name.push({name:prop.name,code:prop.code})
+        let names=[]
+
+        name.forEach((element) => 
+        {
+            if (element.code==prop.code) {
+                names.push(element.name);
+                console.log(element.code,prop.code)
+                io.to(prop.code).emit("name",names)
+            }
+        });
+    })
 });
 
 httpServer.listen(3001, () => {

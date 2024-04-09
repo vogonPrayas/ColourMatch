@@ -6,7 +6,7 @@ let socket = io('http://localhost:3001'); // Connect to your Socket.IO server
 
 
 socket.on('welcome',(data)=>{
-    console.log(data ,"hehpqwhd")
+    // console.log(data ,"hehpqwhd")
   })
 export interface State {
     color: string;
@@ -44,8 +44,14 @@ export interface State {
     name:string,
     setName:(data:string)=>void,
 
+    Pname:string[],
+    setPname:(data:string[])=>void,
+
     type:string,
     setType:(data:string)=>void,
+
+    code:string,
+    setCode:(data:string)=>void,
 
     socket:Socket
 }
@@ -126,6 +132,11 @@ const useStore = create<State>((set) => ({
 
     type:"",
     setType:(data)=>set({type:data}),
+    code:"",
+    setCode:(data)=>set({code:data}),
+
+    Pname:[""],
+    setPname:(data)=>set({Pname:data}),
 
     socket:socket
 }));
