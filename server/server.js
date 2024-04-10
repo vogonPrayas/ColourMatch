@@ -19,6 +19,7 @@ const io = new Server(httpServer, {
 });
 
 let name=[]
+let putali=""
 io.on("connection", (socket) => {
     
     const randomcol=Suffle(RandomCol)
@@ -30,21 +31,30 @@ io.on("connection", (socket) => {
     });
     
     socket.on("join",(prop)=>{
+        putali=prop.name
         socket.join(prop.code)
         io.emit("Meo","hello lampo")
         name.push({name:prop.name,code:prop.code})
         let names=[]
 
+        socket.on("disconnect",()=>{
+            console.log("meow")
+            name=[]
+            io.to(prop.code).emit("disconnected","")
+            });
+
         name.forEach((element) => 
         {
             if (element.code==prop.code) {
                 names.push(element.name);
-                console.log(element.code,prop.code)
+                // console.log(element.code,prop.code)
                 io.to(prop.code).emit("name",names)
             }
         });
     })
-});
+        
+})
+
 
 httpServer.listen(3001, () => {
     console.log("Socket.IO server listening on port 3001");

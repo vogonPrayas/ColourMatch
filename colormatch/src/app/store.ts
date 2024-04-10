@@ -144,7 +144,6 @@ const useStore = create<State>((set) => ({
 const useSocketListener = () => {
     React.useEffect(() => {
       socket.on('call', (data) => {
-        console.log("lado kha bhai")
         useStore.getState().setOther(data);
       });
       socket.on('welcome',(data)=>{
