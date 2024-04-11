@@ -19,6 +19,7 @@ const io = new Server(httpServer, {
 });
 
 let name=[]
+let NOP=[]
 let putali=""
 io.on("connection", (socket) => {
     
@@ -35,6 +36,7 @@ io.on("connection", (socket) => {
         socket.join(prop.code)
         io.emit("Meo","hello lampo")
         name.push({name:prop.name,code:prop.code})
+
         let names=[]
 
         socket.on("disconnect",()=>{
@@ -49,10 +51,24 @@ io.on("connection", (socket) => {
                 names.push(element.name);
                 // console.log(element.code,prop.code)
                 io.to(prop.code).emit("name",names)
+                NOP.push({c:prop.code,nop:names.length})
             }
         });
-    })
         
+    })
+    
+    socket.on("check",(prop)=>{
+        let nop=1
+        console.log(NOP)
+        NOP.forEach((element) => 
+        {
+            if(prop.code==element.c){
+                nop=element.nop
+            }
+        })
+        socket.emit("NOP",nop)
+        console.log("HEYO HEYO")
+    })
 })
 
 

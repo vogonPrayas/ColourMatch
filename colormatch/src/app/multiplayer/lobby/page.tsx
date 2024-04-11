@@ -6,8 +6,10 @@ import { State } from '@/app/store'
 import "@/app/css/lobby.css"
 import "@/app/css/button.css"
 import { error } from 'console'
+import { useRouter } from 'next/navigation'
 
 const page = () => {
+  const router=useRouter()
 
     const {name,lightMode,type,setCode,code,socket,Pname,setPname}=useStore() as State
 
@@ -16,6 +18,13 @@ const page = () => {
   }
   let names: string[] = [];
 
+  // socket.on("players",(data)=>{
+  //   console.log(data)
+  //   // if(data>2){
+  //   //   router.push("/multiplayer")
+  //   // }
+  //   router.push("/multiplayer")
+  // })
   React.useEffect(()=>{
     const fetchData = async () => {
       try {
