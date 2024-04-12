@@ -7,12 +7,12 @@ import Timer from '../../components/timer';
 import Gameover from '../../components/gameover';
 import MultiplayerBox from '../../components/MultiplayerBox';
 
-import "../css/singleplayer.css";
-import "../css/button.css"
-import ".../css/button.css"
+import "@/app/css/singleplayer.css";
+import "@/app/css/button.css"
+import "@/app/css/button.css"
 
 import useStore from '../../store'
-import { State,useSocketListener } from '../../store'
+import { State } from '../../store'
 
 const array: number[] = [];
 
@@ -23,8 +23,8 @@ for (let i = 0; i < 25; i++) {
 const Page: React.FC = () => {
   
 
-  useSocketListener()
-
+  // useSocketListener()
+ 
   const check=()=>{
     let COUNT=0
 
@@ -47,8 +47,10 @@ const Page: React.FC = () => {
         }
   }
 
-  const {color,finalColor,getColor,RandomColor,gameOver,setGameOver,setWon,won,timer,lightMode}=useStore() as State
-
+  const {color,finalColor,getColor,RandomColor,gameOver,setGameOver,setWon,won,timer,lightMode,socket,setOther}=useStore() as State
+    socket.on('call', (data) => {
+        setOther(data);
+      });
     const go=()=>{
       setGameOver(gameOver)
       check()
@@ -66,7 +68,7 @@ const Page: React.FC = () => {
       <div className="ColBoxcon">
         <Colors />
         <div className="container">
-          {array.map(name => (<Box key={name} index={name} small={false} multiPlayer={false}/>))}</div>  
+          {array.map(name => (<Box key={name} index={name} small={false} multiPlayer={true}/>))}</div>  
       </div>
         <div className="border"> </div>
         <MultiRandom/>

@@ -5,7 +5,6 @@ import { State } from '@/app/store'
 
 import "@/app/css/lobby.css"
 import "@/app/css/button.css"
-import { error } from 'console'
 import { useRouter } from 'next/navigation'
 
 const page = () => {
@@ -15,16 +14,14 @@ const page = () => {
 
     const style={
       color:lightMode ?"#58554D":"black"
-  }
-  let names: string[] = [];
+    }
 
-  // socket.on("players",(data)=>{
-  //   console.log(data)
-  //   // if(data>2){
-  //   //   router.push("/multiplayer")
-  //   // }
-  //   router.push("/multiplayer")
-  // })
+  const[disable,setDisabled]=React.useState(false)
+
+  const Diabled={
+    opacity:disable?"40%":""
+  }
+
   React.useEffect(()=>{
     const fetchData = async () => {
       try {
@@ -77,6 +74,19 @@ const page = () => {
     };
   }, []); 
 
+  socket.on("BothReady",(data:string)=>{
+    router.push("/multiplayer/game")
+  })
+
+  socket.on("Ready",(data:string)=>{
+    alert(data)
+  })
+
+  const click=()=>{
+    setDisabled(true)
+    socket.emit("start",{code,name})
+    // router.push("/multiplayer/game")
+  }
  
   let nameta=Pname.map(data=><div className={`button sButton  ${lightMode ? "lightButton" : "darkButton"}`}>{data}</div> )
 
@@ -85,7 +95,7 @@ const page = () => {
     <div className="LobbyCon">
       <div className="name" style={style}>{code}</div>
       {nameta}
-      <div className={`button sButton  ${lightMode ? "lightButton" : "darkButton"}`}>START</div>
+      <div className={`button sButton  ${lightMode ? "lightButton" : "darkButton"}`} onClick={click} style={Diabled}>START</div>
       </div>
     </>
   )

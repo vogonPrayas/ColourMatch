@@ -60,11 +60,10 @@ const page = () => {
     <div>
        <div className="LobbyCon">
             <b className='name'> Your Name:</b>
-            <input type="text" maxLength={10} style={style} value={name} onChange={(e)=>onchange(e,"name")}  />
+            <input type="text" maxLength={10} style={style} value={name} onChange={(e)=>onchange(e,"name")} />
             <b className='name'> Code:</b>
             <input type="text" maxLength={10} style={style} value={code} onChange={(e)=>onchange(e,"code")} />
             <div className={`button sButton  ${lightMode ? "lightButton" : "darkButton"}`} onClick={()=>Check("JOIN")}>JOIN</div>
-            <div className={`button sButton  ${lightMode ? "lightButton" : "darkButton"}`} onClick={()=>Check("CREATE")}>CREATE</div>
        </div>
     </div>
   )

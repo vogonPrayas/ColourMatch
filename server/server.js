@@ -20,19 +20,19 @@ const io = new Server(httpServer, {
 
 let name=[]
 let NOP=[]
-let putali=""
+let readyCount=[]
 io.on("connection", (socket) => {
     
     const randomcol=Suffle(RandomCol)
     io.emit('welcome',randomcol )
     
     socket.on('colors', (data) => {
-        socket.broadcast.emit("call",data)
-        
+        socket.broadcast.to(data.code).emit("call",data.color)
+        console.log(data.color,data.code)
     });
     
     socket.on("join",(prop)=>{
-        putali=prop.name
+
         socket.join(prop.code)
         io.emit("Meo","hello lampo")
         name.push({name:prop.name,code:prop.code})
@@ -49,7 +49,6 @@ io.on("connection", (socket) => {
         {
             if (element.code==prop.code) {
                 names.push(element.name);
-                // console.log(element.code,prop.code)
                 io.to(prop.code).emit("name",names)
                 NOP.push({c:prop.code,nop:names.length})
             }
@@ -68,6 +67,22 @@ io.on("connection", (socket) => {
         })
         socket.emit("NOP",nop)
         console.log("HEYO HEYO")
+    })
+
+    socket.on("start",(data)=>{
+        console.log("start babe start")
+        readyCount.push({count:0,code:data.code})
+        readyCount.forEach(element=>{
+            if(element.code==data.code){
+                element.count+=1
+            if(element.count==2){
+                io.to(element.code).emit("BothReady")
+            }
+            }
+            
+        })
+        console.log(readyCount)
+        socket.broadcast.to(data.code).emit("Ready",data.name+"is ready")
     })
 })
 

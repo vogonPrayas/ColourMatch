@@ -93,7 +93,6 @@ const useStore = create<State>((set) => ({
         set((state) => {
             const updatedColors = [...state.finalColor];
             updatedColors[index] = col;
-            socket.emit('colors', updatedColors)
             console.log("hehe")
             return { finalColor: updatedColors };
         });
