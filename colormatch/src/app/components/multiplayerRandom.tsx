@@ -15,8 +15,6 @@ for (let i = 0; i < 25; i++) {
 
 const MultiRandom = () => {
   const {SetRandomColor,New,setNew,lightMode,randomColorMP,socket,setRandomMP,RandomColor}=useStore() as State
-
-  useSocketListener()
     console.log(randomColorMP)
   return (
     <div className="RandomCon">

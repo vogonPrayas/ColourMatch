@@ -21,10 +21,12 @@ const io = new Server(httpServer, {
 let name=[]
 let NOP=[]
 let readyCount=[]
+
 io.on("connection", (socket) => {
     
-    const randomcol=Suffle(RandomCol)
-    io.emit('welcome',randomcol )
+    // let randomcol=Suffle(RandomCol)
+    // console.log(randomcol)
+    io.emit('welcome')
     
     socket.on('colors', (data) => {
         socket.broadcast.to(data.code).emit("call",data.color)
@@ -32,7 +34,7 @@ io.on("connection", (socket) => {
     });
     
     socket.on("join",(prop)=>{
-
+        
         socket.join(prop.code)
         io.emit("Meo","hello lampo")
         name.push({name:prop.name,code:prop.code})
@@ -70,13 +72,12 @@ io.on("connection", (socket) => {
     })
 
     socket.on("start",(data)=>{
-        console.log("start babe start")
         readyCount.push({count:0,code:data.code})
         readyCount.forEach(element=>{
             if(element.code==data.code){
                 element.count+=1
             if(element.count==2){
-                io.to(element.code).emit("BothReady")
+                io.to(element.code).emit("BothReady",Suffle(RandomCol))
             }
             }
             

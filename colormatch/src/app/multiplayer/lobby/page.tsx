@@ -10,7 +10,7 @@ import { useRouter } from 'next/navigation'
 const page = () => {
   const router=useRouter()
 
-    const {name,lightMode,type,setCode,code,socket,Pname,setPname}=useStore() as State
+    const {name,lightMode,type,setCode,code,socket,Pname,setPname,setRandomMP}=useStore() as State
 
     const style={
       color:lightMode ?"#58554D":"black"
@@ -74,7 +74,9 @@ const page = () => {
     };
   }, []); 
 
-  socket.on("BothReady",(data:string)=>{
+  socket.on("BothReady",(data:string[])=>{
+    console.log(data)
+    setRandomMP(data)
     router.push("/multiplayer/game")
   })
 
@@ -85,7 +87,6 @@ const page = () => {
   const click=()=>{
     setDisabled(true)
     socket.emit("start",{code,name})
-    // router.push("/multiplayer/game")
   }
  
   let nameta=Pname.map(data=><div className={`button sButton  ${lightMode ? "lightButton" : "darkButton"}`}>{data}</div> )

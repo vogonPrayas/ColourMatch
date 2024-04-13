@@ -21,9 +21,6 @@ for (let i = 0; i < 25; i++) {
 }
 
 const Page: React.FC = () => {
-  
-
-  // useSocketListener()
  
   const check=()=>{
     let COUNT=0
@@ -61,7 +58,6 @@ const Page: React.FC = () => {
 
   return (
     <>
-    
       <Timer/>
     <div className="con">
       
