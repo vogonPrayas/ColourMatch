@@ -24,8 +24,6 @@ let readyCount=[]
 
 io.on("connection", (socket) => {
     
-    // let randomcol=Suffle(RandomCol)
-    // console.log(randomcol)
     io.emit('welcome')
     
     socket.on('colors', (data) => {
@@ -36,13 +34,11 @@ io.on("connection", (socket) => {
     socket.on("join",(prop)=>{
         
         socket.join(prop.code)
-        io.emit("Meo","hello lampo")
         name.push({name:prop.name,code:prop.code})
 
         let names=[]
 
         socket.on("disconnect",()=>{
-            console.log("meow")
             name=[]
             io.to(prop.code).emit("disconnected","")
             });
@@ -60,7 +56,6 @@ io.on("connection", (socket) => {
     
     socket.on("check",(prop)=>{
         let nop=1
-        console.log(NOP)
         NOP.forEach((element) => 
         {
             if(prop.code==element.c){
@@ -68,7 +63,6 @@ io.on("connection", (socket) => {
             }
         })
         socket.emit("NOP",nop)
-        console.log("HEYO HEYO")
     })
 
     socket.on("start",(data)=>{
