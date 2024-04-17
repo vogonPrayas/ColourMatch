@@ -44,6 +44,9 @@ export interface State {
     name:string,
     setName:(data:string)=>void,
 
+    otherName:string,
+    setOtherName:(data:string)=>void,
+
     Pname:string[],
     setPname:(data:string[])=>void,
 
@@ -129,6 +132,9 @@ const useStore = create<State>((set) => ({
     name:"",
     setName:(data)=>set({name:data}),
 
+    otherName:"",
+    setOtherName:(data)=>set({otherName:data}),
+
     type:"",
     setType:(data)=>set({type:data}),
     code:"",
@@ -158,4 +164,4 @@ const useSocketListener = () => {
   };
 
 export default useStore;
-export { useSocketListener };
+// export { useSocketListener };

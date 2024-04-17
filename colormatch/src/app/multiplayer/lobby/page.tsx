@@ -10,7 +10,7 @@ import { useRouter } from 'next/navigation'
 const page = () => {
   const router=useRouter()
 
-    const {name,lightMode,type,setCode,code,socket,Pname,setPname,setRandomMP}=useStore() as State
+    const {name,lightMode,type,setCode,code,socket,Pname,setPname,setRandomMP,setOtherName}=useStore() as State
 
     const style={
       color:lightMode ?"#58554D":"black"
@@ -42,6 +42,11 @@ const page = () => {
       try {
         await socket.on('name', (data: string[]) => {
         setPname(data)
+        data.forEach(element => {
+          if(element!=name){
+            setOtherName(element)
+          }
+        });
         console.log(data)})
       }
       catch{

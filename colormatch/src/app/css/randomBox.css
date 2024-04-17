@@ -10,9 +10,18 @@
     margin: auto;
     margin-top: 20px;
 }
-@media screen and (max-width: 650px) {
+.SmallContainer{
+    margin-top: 0px;
+    grid-template-columns: repeat(5, 10px); 
+    gap:3px;
+    
+}
+@media screen and (max-width: 700px) {
     .RandomContainer{
         margin-top:20px;
     }
-
+    .SmallContainer{
+        grid-template-columns: repeat(5, 20px); 
+        gap:3px;
+    }
 }

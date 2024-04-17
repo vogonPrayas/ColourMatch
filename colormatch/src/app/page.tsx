@@ -10,8 +10,14 @@ import { io } from 'socket.io-client';
 
 export default function Home() {
   const socket = io('http://localhost:3001');
-  const {lightMode,setMode,finalColor}=useStore() as State
+  const {lightMode,setMode,finalColor,restartColor,SetRandomColor,setTimer}=useStore() as State
 
+  React.useEffect(()=>{
+    restartColor()
+  SetRandomColor()
+  setTimer(0)
+  },[])
+  
 
   const style={
     fill:lightMode?"#E5DDC5":"#323232",

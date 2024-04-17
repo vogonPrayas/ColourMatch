@@ -24,7 +24,6 @@ let readyCount=[]
 
 io.on("connection", (socket) => {
     
-    io.emit('welcome')
     
     socket.on('colors', (data) => {
         socket.broadcast.to(data.code).emit("call",data.color)

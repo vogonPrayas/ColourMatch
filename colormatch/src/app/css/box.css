@@ -22,8 +22,13 @@
     height: 20px;
     border-radius: 2px;
 }
+.XS{
+    width:10px;
+    height: 10px;
 
-@media screen and (max-width: 650px) {
+}
+
+@media screen and (max-width: 600px) {
     .box{
         width:50px;
         height: 50px;

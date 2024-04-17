@@ -17,7 +17,7 @@ const OtherBox = ({index}:{index:number}) => {
   },[other])
 
   return (
-    <div className='Sbox' style={style}></div>
+    <div className='Sbox XS' style={style}></div>
   )
 }
 export default OtherBox

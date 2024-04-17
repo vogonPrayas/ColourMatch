@@ -44,7 +44,7 @@ const Page: React.FC = () => {
         }
   }
 
-  const {color,finalColor,getColor,RandomColor,gameOver,setGameOver,setWon,won,timer,lightMode,socket,setOther}=useStore() as State
+  const {color,finalColor,getColor,RandomColor,gameOver,setGameOver,setWon,won,timer,lightMode,socket,setOther,name,otherName}=useStore() as State
     socket.on('call', (data) => {
         setOther(data);
       });
@@ -55,24 +55,30 @@ const Page: React.FC = () => {
       console.log(won)
     }
 
+    const bold={
+      fontWeight:900,
+    }
 
   return (
     <>
-      <Timer/>
+      {/* <Timer/> */}
+      <h1 className='title'>{name} <b style={bold}>vs</b> {otherName}</h1>
     <div className="con">
       
       <div className="ColBoxcon">
         <Colors />
-        <div className="container">
+        <div className="container" >
           {array.map(name => (<Box key={name} index={name} small={false} multiPlayer={true}/>))}</div>  
       </div>
         <div className="border"> </div>
-        <MultiRandom/>
+        <div className="FlexColumn">
+          <MultiRandom/>
+          <MultiplayerBox/>
+        </div>
     </div>
       <div onClick={go} className={`button sButton finish ${lightMode ? "lightButton" : "darkButton"}`}>FINISH</div>
-
+      
       {gameOver?<Gameover/>:""}
-      <MultiplayerBox/>
     </>
   );
 }
