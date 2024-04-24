@@ -20,35 +20,49 @@ for (let i = 0; i < 25; i++) {
   array.push(i);
 }
 
+
 const Page: React.FC = () => {
- 
+  const {color,finalColor,getColor,RandomColor,gameOver,setGameOver,setWon,won,timer,lightMode,socket,setOther,name,otherName,randomColorMP,code}=useStore() as State
+
+  socket.on("over",(data)=>{
+
+    if((data.name==name && data.won=="won") || (data.name==otherName && data.won=="lost" )){
+      console.log("You Won")
+    }
+    else if((data.name==otherName && data.won=="won")||(data.name==name && data.won=="lost")){
+      console.log("You Lost")
+    }
+  })
+
   const check=()=>{
     let COUNT=0
 
     for(let i=0;i<RandomColor.length;i++){
 
-          if(finalColor[i]==RandomColor[i]){
+          if(finalColor[i]==randomColorMP[i]){
             COUNT+=1
-            console.log(finalColor[i],RandomColor[i])
+            console.log(finalColor[i],randomColorMP[i])
           }
 
         }
         
-        if(COUNT==RandomColor.length){
+        if(COUNT==randomColorMP.length){
           setWon(true)
           console.log("Jityo")
+          socket.emit("Won?",{won:'won',name,code})
         }
 
         else{
           console.log("Haryo")
+          socket.emit("Won?",{won:'lost',name,code})
         }
   }
 
-  const {color,finalColor,getColor,RandomColor,gameOver,setGameOver,setWon,won,timer,lightMode,socket,setOther,name,otherName}=useStore() as State
     socket.on('call', (data) => {
         setOther(data);
       });
-    const go=()=>{
+    
+    const go= async()=>{
       setGameOver(gameOver)
       check()
       console.log(finalColor,RandomColor)
@@ -61,7 +75,6 @@ const Page: React.FC = () => {
 
   return (
     <>
-      {/* <Timer/> */}
       <h1 className='title'>{name} <b style={bold}>vs</b> {otherName}</h1>
     <div className="con">
       
@@ -77,8 +90,8 @@ const Page: React.FC = () => {
         </div>
     </div>
       <div onClick={go} className={`button sButton finish ${lightMode ? "lightButton" : "darkButton"}`}>FINISH</div>
-      
-      {gameOver?<Gameover/>:""}
+      {/* {gameOver?<Gameover/>:""} */}
+
     </>
   );
 }

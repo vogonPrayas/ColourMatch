@@ -64,6 +64,11 @@ io.on("connection", (socket) => {
         socket.emit("NOP",nop)
     })
 
+    socket.on("Won?",(data)=>{
+        console.log(data)
+        io.to(data.code).emit("over",data)
+    })
+
     socket.on("start",(data)=>{
         readyCount.push({count:0,code:data.code})
         readyCount.forEach(element=>{
