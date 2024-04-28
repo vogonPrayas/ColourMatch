@@ -3,7 +3,7 @@
     height: 100vh;
     position: fixed;
     top: 0;
-    background-color:#222831ec;
+    background-color:#15181eec;
     text-align: center;
 
 }
@@ -19,7 +19,7 @@
     border-radius:20px ;
 }
 .lightflexCon{
-    color: #58554D;
+    color: #3e3b35;
     background-color: rgba(199, 2s46, 255, 0.388);
 }
 
@@ -44,10 +44,31 @@
     font-weight: 300;
     font-weight: 900;
 }
-
+.mpWon{
+    font-size: 35px;
+    font-weight: 900;
+}
 .score{
     font-size: 5vw;
     font-weight: 900;
+}
+.mpLost{
+    font-size: 20px;
+    font-weight: 200;
+}
+.MPflexCon2{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap:20px;
+    width: fit-content;
+    margin: 0 auto;
+    margin-top: 80px;
+}
+.line{
+    width: 200px;
+    height: 1px;
+    background-color: aliceblue;
 }
 @media screen and (max-width: 700px) {
     .flexCon{

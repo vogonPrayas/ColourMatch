@@ -27,8 +27,11 @@ export interface State {
     won: boolean;
     setWon: (bool: boolean) => void;
 
-    New: boolean;
-    setNew: (bool: boolean) => void;
+    // Mpwon:boolean,
+    // setMpwon:(bool:boolean)=>void,
+
+    New: Boolean;
+    setNew: (bool: Boolean) => void;
 
     lightMode: boolean;
     setMode: (bool: boolean) => void;
@@ -100,6 +103,7 @@ const useStore = create<State>((set) => ({
             return { finalColor: updatedColors };
         });
     },
+    
     restartColor: () => set({ finalColor: Array.from({ length: 25 }, () => "#EEEEEE") }),
 
     RandomColor: RandomColors,
@@ -116,6 +120,9 @@ const useStore = create<State>((set) => ({
     won: false,
     setWon: (bool) => set({ won: bool }),
 
+    // Mpwon:false,
+    // setMpWon: (bool) => set({ Mpwon: bool }),
+
     New: false,
     setNew: (bool) => set({ New: bool }),
 
@@ -126,6 +133,7 @@ const useStore = create<State>((set) => ({
     setOther: (col) => {
         set({ other: col });
     },
+
     randomColorMP:[""],
     setRandomMP:(data)=>set({randomColorMP:data}),
 

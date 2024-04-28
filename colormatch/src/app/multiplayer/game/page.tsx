@@ -6,6 +6,7 @@ import MultiRandom from '../../components/multiplayerRandom';
 import Timer from '../../components/timer';
 import Gameover from '../../components/gameover';
 import MultiplayerBox from '../../components/MultiplayerBox';
+import MPOverPanel from '@/app/components/MPOverPanel';
 
 import "@/app/css/singleplayer.css";
 import "@/app/css/button.css"
@@ -27,10 +28,12 @@ const Page: React.FC = () => {
   socket.on("over",(data)=>{
 
     if((data.name==name && data.won=="won") || (data.name==otherName && data.won=="lost" )){
-      console.log("You Won")
+      setWon(true)
+      setGameOver(gameOver)
     }
     else if((data.name==otherName && data.won=="won")||(data.name==name && data.won=="lost")){
       console.log("You Lost")
+      setGameOver(gameOver)
     }
   })
 
@@ -63,7 +66,7 @@ const Page: React.FC = () => {
       });
     
     const go= async()=>{
-      setGameOver(gameOver)
+      // setGameOver(gameOver)
       check()
       console.log(finalColor,RandomColor)
       console.log(won)
@@ -90,7 +93,7 @@ const Page: React.FC = () => {
         </div>
     </div>
       <div onClick={go} className={`button sButton finish ${lightMode ? "lightButton" : "darkButton"}`}>FINISH</div>
-      {/* {gameOver?<Gameover/>:""} */}
+      {gameOver?<MPOverPanel/>:""}
 
     </>
   );

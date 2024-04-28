@@ -3,6 +3,7 @@ import Link from "next/link";
 import React from "react";
 import "./css/menu.css"
 import "./css/button.css"
+import MPOverPanel from "./components/MPOverPanel";
 import useStore from "./store";
 import { State } from "./store";
 import { io } from 'socket.io-client';
