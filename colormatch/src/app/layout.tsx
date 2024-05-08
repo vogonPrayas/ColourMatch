@@ -16,7 +16,7 @@ export default function RootLayout({
   children: React.ReactNode;
   random: React.ReactNode;
 }>) {
-  const {lightMode,setMode}=useStore() as State
+  const {lightMode,setMode,setWon,setGameOver,gameOver}=useStore() as State
 
   let router= useRouter()
   const style={
@@ -36,8 +36,13 @@ export default function RootLayout({
     transition:"fill 0.2s" ,
     cursor: "pointer",
   }
-  const redirectToHome=()=>{
+  const redirectToHome=()=>{ 
+    setWon(false)
+    setGameOver(true)
+    // router.refresh()
     router.push("/")
+    router.refresh()
+   
   }
 
   return (

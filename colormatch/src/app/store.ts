@@ -72,13 +72,22 @@ const RandomCol = ["F78787", "F5F197", "98F597", "97F5DE", "97ABF5", "F597EB"];
 const initialColors: string[] = Array.from({ length: 25 }, () => "#EEEEEE");
 const RandomColors: string[] = Suffle(RandomCol);
 
-let light: boolean;
+// let light: boolean;
 
-  if (localStorage.getItem("darkMode") === 'true') {
-      light = false;
-  } else {
-      light = true;
-  }
+//   if (localStorage.getItem("darkMode") === 'true') {
+//       light = false;
+//   } else {
+//       light = true;
+//   }
+
+  let light: boolean;
+
+if (typeof window !== 'undefined' && window.localStorage.getItem("darkMode") === 'true') {
+    light = false;
+} else {
+    light = true;
+}
+
 
 // if (typeof window !== 'undefined') {
 //   if (localStorage.getItem("darkMode") === 'true') {

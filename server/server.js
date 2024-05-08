@@ -9,7 +9,6 @@ const Suffle = (col) => {
 
 const RandomCol = ["F78787", "F5F197", "98F597", "97F5DE", "97ABF5", "F597EB"];
 
-
 const httpServer = http.createServer();
 const io = new Server(httpServer, {
     cors: {

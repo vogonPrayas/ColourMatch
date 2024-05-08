@@ -11,7 +11,7 @@ import { io } from 'socket.io-client';
 
 export default function Home() {
   const socket = io('http://localhost:3001');
-  const {lightMode,setMode,finalColor,restartColor,SetRandomColor,setTimer}=useStore() as State
+  const {lightMode,setMode,finalColor,restartColor,SetRandomColor,setTimer,setWon,setGameOver,gameOver}=useStore() as State
 
   React.useEffect(()=>{
     restartColor()
@@ -25,9 +25,8 @@ export default function Home() {
     transition:"fill 0.2s" 
   }
   const click =()=>{
-    setMode(lightMode)
-    localStorage.setItem("darkMode",`${lightMode}`)
-    console.log(localStorage.getItem("mode"))
+    setWon(false)
+    setGameOver(true)
   }
 
   
@@ -36,7 +35,7 @@ export default function Home() {
       <h1 className="title">COLOR MATCH</h1>
       <div className="hcontainer">
       <Link href="/singleplayer" className={lightMode?"lightButton button":"button darkButton"} >SINGLE PLAYER</Link>
-      <Link href="/multiplayer" className={lightMode?"lightButton button":"button darkButton"}>MULTI PLAYER</Link>
+      <Link href="/multiplayer" className={lightMode?"lightButton button":"button darkButton"} onClick={click}>MULTI PLAYER</Link>
       </div>
     </>
   );
