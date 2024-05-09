@@ -27,9 +27,6 @@ export interface State {
     won: boolean;
     setWon: (bool: boolean) => void;
 
-    // Mpwon:boolean,
-    // setMpwon:(bool:boolean)=>void,
-
     New: Boolean;
     setNew: (bool: Boolean) => void;
 
@@ -72,14 +69,6 @@ const RandomCol = ["F78787", "F5F197", "98F597", "97F5DE", "97ABF5", "F597EB"];
 const initialColors: string[] = Array.from({ length: 25 }, () => "#EEEEEE");
 const RandomColors: string[] = Suffle(RandomCol);
 
-// let light: boolean;
-
-//   if (localStorage.getItem("darkMode") === 'true') {
-//       light = false;
-//   } else {
-//       light = true;
-//   }
-
   let light: boolean;
 
 if (typeof window !== 'undefined' && window.localStorage.getItem("darkMode") === 'true') {
@@ -87,17 +76,6 @@ if (typeof window !== 'undefined' && window.localStorage.getItem("darkMode") ===
 } else {
     light = true;
 }
-
-
-// if (typeof window !== 'undefined') {
-//   if (localStorage.getItem("darkMode") === 'true') {
-//     light = false;
-//   } else {
-//     light = true;
-//   }
-// } else {
-//   light = true;
-// }
 
 const useStore = create<State>((set) => ({
     color: "",
@@ -128,9 +106,6 @@ const useStore = create<State>((set) => ({
 
     won: false,
     setWon: (bool) => set({ won: bool }),
-
-    // Mpwon:false,
-    // setMpWon: (bool) => set({ Mpwon: bool }),
 
     New: false,
     setNew: (bool) => set({ New: bool }),
@@ -163,22 +138,4 @@ const useStore = create<State>((set) => ({
     socket:socket
 }));
 
-const useSocketListener = () => {
-    React.useEffect(() => {
-      socket.on('call', (data) => {
-        useStore.getState().setOther(data);
-      });
-      socket.on('welcome',(data)=>{
-        useStore.getState().setRandomMP(data);
-        console.log(data ,"hehpqwhd")
-      })
-
-      return () => {
-        socket.off('call');
-        socket.off('welcome');
-      };
-    }, []);
-  };
-
 export default useStore;
-// export { useSocketListener };
