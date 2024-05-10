@@ -32,7 +32,7 @@ const LobbyPage = () => {
     return () => {
       socket.off('join')
     }
-  }, [])
+  }, [socket, code, name]) // Update dependency array
 
   React.useEffect(() => {
     const fetchData = async () => {
@@ -53,7 +53,7 @@ const LobbyPage = () => {
     return () => {
       socket.off('name')
     }
-  }, [])
+  }, [socket, name, setPname, setOtherName]) // Update dependency array
 
   React.useEffect(() => {
     const fetchData = async () => {
@@ -70,24 +70,34 @@ const LobbyPage = () => {
     return () => {
       socket.off("disconnected")
     }
-  }, [])
+  }, [socket, code, name]) // Update dependency array
 
-  socket.on("BothReady", (data: string[]) => {
-    console.log(data)
-    setRandomMP(data)
-    router.push("/multiplayer/game")
-  })
+  React.useEffect(() => {
+    const bothReadyHandler = (data: string[]) => {
+      console.log(data)
+      setRandomMP(data)
+      router.push("/multiplayer/game")
+    }
 
-  socket.on("Ready", (data: string) => {
-    alert(data)
-  })
+    const readyHandler = (data: string) => {
+      alert(data)
+    }
+
+    socket.on("BothReady", bothReadyHandler)
+    socket.on("Ready", readyHandler)
+
+    return () => {
+      socket.off("BothReady", bothReadyHandler)
+      socket.off("Ready", readyHandler)
+    }
+  }, [socket, setRandomMP, router]) // Update dependency array
 
   const click = () => {
     setDisabled(true)
     socket.emit("start", { code, name })
   }
 
-  let nameta = Pname.map(data => <div className={`button sButton ${lightMode ? "lightButton" : "darkButton"}`}>{data}</div>)
+  let nameta = Pname.map(data => <div key={data} className={`button sButton ${lightMode ? "lightButton" : "darkButton"}`}>{data}</div>)
 
   return (
     <>
