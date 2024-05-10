@@ -13,7 +13,7 @@ const Box = ({ index,small,multiPlayer}: { index: number,small:boolean,multiPlay
 
   React.useEffect(()=>{
     setStyle({backgroundColor: small==true && multiPlayer==false?`#${RandomColor[index]}`:"#FFFFFF"})
-  },[New])
+  },[small, multiPlayer, RandomColor, index])
 
   const meow = () => {
     if(small && multiPlayer){

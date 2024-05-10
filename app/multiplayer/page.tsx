@@ -1,72 +1,68 @@
-"use client"
-import React from 'react'
-import useStore from '../store'
-import { State } from '../store'
-import "../css/button.css"
-import "../css/multiplayer.css"
-import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-const page = () => {
+import React, { useState, useEffect } from 'react';
+import useStore from '../store';
+import { State } from '../store';
+import '../css/button.css';
+import '../css/multiplayer.css';
+import { useRouter } from 'next/navigation';
 
-    const router=useRouter()
-    const {color,finalColor,getColor,RandomColor,gameOver,setGameOver,setWon,won,timer,lightMode,name,setName,setType,code,setCode,socket,setPname}=useStore() as State
-    const [No,setNo]=React.useState(false)
-    const style={
-        color:lightMode ?"#58554D":"black",
-        border:No?"1px red solid":""
+const Page = () => {
+  const router = useRouter();
+  const { lightMode, setName, setType, setCode, socket } = useStore() as State;
+  const [No, setNo] = useState(false);
+  const [name, setNameValue] = useState('');
+  const [code, setCodeValue] = useState('');
+
+  const style = {
+    color: lightMode ? '#58554D' : 'black',
+    border: No ? '1px red solid' : '',
+  };
+
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>, field: string) => {
+    if (field === 'name') {
+      setNameValue(e.target.value);
+    } else {
+      setCodeValue(e.target.value);
+    }
+  };
+
+  const check = (action: string) => {
+    if (name.replace(/\s/g, '') === '') {
+      alert('Please enter your name.');
+      return;
     }
 
-    const onchange=(e: React.ChangeEvent<HTMLInputElement>,name:string)=>{
-      if(name=="name")
-      setName(e.target.value)
-      else
-      setCode(e.target.value)
+    if (code.replace(/\s/g, '') === '') {
+      alert('Please enter a code.');
+      return;
     }
 
-    const Check=(a:string)=>{
-      if (name.replace(/\s/g, '') === '') {
-        alert("name please :( ")
-      }
-      else{
-        setType(a)
-        // router.push("/multiplayer/lobby")
-      }
+    setType(action);
+    socket.emit('check', { code, name });
 
-      if (code.replace(/\s/g, '') === '') {
-        alert("Code please :(")
+    socket.on('NOP', (data: number) => {
+      console.log(data);
+      if (data >= 2) {
+        setNo(true);
+      } else {
+        setNo(false);
+        router.push('/multiplayer/lobby');
       }
-      else{ 
-        // let IN=true
-        socket.emit("check",{ code, name })
-        socket.on("NOP",(data:number)=>{
-          console.log(data)
-          if(data>=2){
-            // alert("you shallnot pass")
-            setNo(true)
-          }
-          else{
-            setNo(false)
-            router.push("/multiplayer/lobby")
-          }
-          
-        })
-        
-      }
-     
-
-    }
+    });
+  };
 
   return (
     <div>
-       <div className="LobbyCon">
-            <b className='name'> Your Name:</b>
-            <input type="text" maxLength={10} style={style} value={name} onChange={(e)=>onchange(e,"name")} />
-            <b className='name'> Code:</b>
-            <input type="text" maxLength={10} style={style} value={code} onChange={(e)=>onchange(e,"code")} />
-            <div className={`button sButton  ${lightMode ? "lightButton" : "darkButton"}`} onClick={()=>Check("JOIN")}>JOIN</div>
-       </div>
+      <div className="LobbyCon">
+        <b className="name"> Your Name:</b>
+        <input type="text" maxLength={10} style={style} value={name} onChange={(e) => onChange(e, 'name')} />
+        <b className="name"> Code:</b>
+        <input type="text" maxLength={10} style={style} value={code} onChange={(e) => onChange(e, 'code')} />
+        <div className={`button sButton  ${lightMode ? 'lightButton' : 'darkButton'}`} onClick={() => check('JOIN')}>
+          JOIN
+        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default Page;
