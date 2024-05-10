@@ -1,3 +1,4 @@
+"use client"
 import React from 'react'
 import OtherBox from './otherBox'
 import "../css/randomBox.css"
