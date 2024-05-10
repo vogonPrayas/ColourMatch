@@ -8,9 +8,9 @@ import Gameover from '../../components/gameover';
 import MultiplayerBox from '../../components/MultiplayerBox';
 import MPOverPanel from '../../components/MPOverPanel';
 
-import "../css/singleplayer.css";
-import "../css/button.css"
-import "../css/button.css"
+import "../../css/singleplayer.css";
+import "../../css/button.css"
+import "../../css/button.css"
 
 import useStore from '../../store'
 import { State } from '../../store'

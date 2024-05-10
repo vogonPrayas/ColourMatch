@@ -7,8 +7,8 @@ import Timer from '../components/timer';
 
 import Gameover from '../components/gameover';
 
-import "../css/singleplayer.css";
-import "../css/button.css"
+import "../../css/singleplayer.css";
+import "../../css/button.css"
 
 import useStore from '../store'
 import { State } from '../store'
