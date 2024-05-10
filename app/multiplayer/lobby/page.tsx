@@ -1,10 +1,10 @@
 "use client"
 import React from 'react'
-import useStore from '@/app/store'
-import { State } from '@/app/store'
+import useStore from '../../store'
+import { State } from '../../store'
 
-import "@/app/css/lobby.css"
-import "@/app/css/button.css"
+import "../css/lobby.css"
+import "../css/button.css"
 import { useRouter } from 'next/navigation'
 
 const page = () => {
