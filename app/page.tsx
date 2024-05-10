@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React, { useEffect } from "react";
+import React from "react";
 import "./css/menu.css";
 import "./css/button.css";
 import MPOverPanel from "./components/MPOverPanel";
@@ -11,7 +11,7 @@ export default function Home() {
   const socket = io('http://localhost:3001');
   const { lightMode, setMode, finalColor, restartColor, SetRandomColor, setTimer, setWon, setGameOver, gameOver } = useStore() as State;
 
-  useEffect(() => {
+  React.useEffect(() => {
     restartColor();
     SetRandomColor();
     setTimer(0);
