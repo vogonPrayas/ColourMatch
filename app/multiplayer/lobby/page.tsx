@@ -3,8 +3,8 @@ import React from 'react'
 import useStore from '../../store'
 import { State } from '../../store'
 
-import "../css/lobby.css"
-import "../css/button.css"
+import "../../css/lobby.css"
+import "../../css/button.css"
 import { useRouter } from 'next/navigation'
 
 const page = () => {
