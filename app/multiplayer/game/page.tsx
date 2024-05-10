@@ -6,11 +6,11 @@ import MultiRandom from '../../components/multiplayerRandom';
 import Timer from '../../components/timer';
 import Gameover from '../../components/gameover';
 import MultiplayerBox from '../../components/MultiplayerBox';
-import MPOverPanel from '@/app/components/MPOverPanel';
+import MPOverPanel from '../../components/MPOverPanel';
 
-import "@/app/css/singleplayer.css";
-import "@/app/css/button.css"
-import "@/app/css/button.css"
+import "../css/singleplayer.css";
+import "../css/button.css"
+import "../css/button.css"
 
 import useStore from '../../store'
 import { State } from '../../store'
