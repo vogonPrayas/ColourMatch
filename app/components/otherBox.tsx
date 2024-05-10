@@ -14,7 +14,7 @@ const OtherBox = ({index}:{index:number}) => {
 
   React.useEffect(()=>{
     setStyle({backgroundColor:`#${other[index]}`})
-  },[other])
+  },[other[index]])
 
   return (
     <div className='Sbox XS' style={style}></div>

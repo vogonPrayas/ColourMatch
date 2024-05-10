@@ -12,8 +12,8 @@ const Colors: React.FC= () => {
 
   return (
     <div className={`Ccontainer ${lightMode?"lightCcontainer":"darkCcontainer"}` }>
-      {colors.map((color) => (
-        <div>
+      {colors.map((color,index) => (
+        <div key={index}>
         <Color key={color} colors={color}/>
         </div>
       ))}

@@ -62,7 +62,7 @@ const Page: React.FC = () => {
       <div className="ColBoxcon">
         <Colors />
         <div className="container">
-          {array.map(name => (<Box key={name} index={name} small={false} multiPlayer={false}/>))}</div>  
+          {array.map((name) => (<Box key={name} index={name} small={false} multiPlayer={false}/>))}</div>  
       </div>
         <div className="border"> </div>
         <Random></Random>

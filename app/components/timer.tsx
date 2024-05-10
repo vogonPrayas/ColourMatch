@@ -17,7 +17,7 @@ const Timer = () => {
           return () => clearInterval(intervalId);
         }
 
-        }, [timer]);
+        }, [timer, setTimer, gameOver]);
 
       const style={
         backgroundColor:lightMode?"#BED7DC":"#15191f",

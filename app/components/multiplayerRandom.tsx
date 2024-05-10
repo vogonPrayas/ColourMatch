@@ -1,5 +1,4 @@
 import React from 'react'
-import Box from './box';
 import useStore from '../store';
 import { State } from '../store';
 
@@ -19,7 +18,7 @@ const MultiRandom = () => {
   return (
     <div className="RandomCon">
       <div className="RandomContainer">
-    {array.map(name => (<div className='Sbox' style={{backgroundColor: `#${randomColorMP[name]}`}}></div>))}
+    {array.map((name,index) => (<div key={index} className='Sbox' style={{backgroundColor: `#${randomColorMP[name]}`}}></div>))}
       </div>
     </div>
   )
