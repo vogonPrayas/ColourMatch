@@ -7,7 +7,7 @@
 .yarn/install-state.gz
 node_modules/socket.io/
 
-# testing
+# testing;
 /coverage
 
 # next.js
