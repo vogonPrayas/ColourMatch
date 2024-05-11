@@ -7,10 +7,8 @@ import {useRouter} from "next/navigation";
 import"./global.css"
 export default function RootLayout({
   children,
-  random
 }: Readonly<{
   children: React.ReactNode;
-  random: React.ReactNode;
 }>) {
   const {lightMode,setMode,setWon,setGameOver,gameOver}=useStore() as State
 
