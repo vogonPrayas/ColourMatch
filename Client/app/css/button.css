@@ -23,6 +23,7 @@
 .sButton{
     min-width: fit-content;
     padding: 10px 30px;
+    top: 10px;
 }
 .finish{
     margin-top: 10px;

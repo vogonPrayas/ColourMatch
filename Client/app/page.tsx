@@ -9,7 +9,6 @@ import { State } from "./store";
 import { io } from 'socket.io-client';
 
 export default function Home() {
-  const socket = io('http://localhost:3001');
   const { lightMode, setMode, finalColor, restartColor, SetRandomColor, setTimer, setWon, setGameOver, gameOver } = useStore() as State;
 
   React.useEffect(() => {
