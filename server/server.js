@@ -1,10 +1,10 @@
 import { Server } from 'socket.io';
 import http from 'http';
-import express from 'express';
-import cors from 'cors'; // Import the CORS middleware
+// import express from 'express';
+// import cors from 'cors'; // Import the CORS middleware
 
-const app = express(); // Create an Express.js app
-app.use(cors()); // Add CORS middleware to your app
+// const app = express(); // Create an Express.js app
+// app.use(cors()); // Add CORS middleware to your app
 
 const Suffle = (col) => {
     return (
@@ -14,7 +14,7 @@ const Suffle = (col) => {
 
 const RandomCol = ["F78787", "F5F197", "98F597", "97F5DE", "97ABF5", "F597EB"];
 
-const httpServer = http.createServer(app); // Pass the Express app to createServer
+const httpServer = http.createServer(); // Pass the Express app to createServer
 const io = new Server(httpServer, {
     cors: {
         origin: '*',
@@ -54,6 +54,7 @@ io.on("connection", (socket) => {
                 NOP.push({c:prop.code,nop:names.length})
             }
         });
+        console.log(name)
         
     })
     

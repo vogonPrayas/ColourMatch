@@ -2,7 +2,7 @@ import { create } from "zustand";
 import React from "react";
 import { io,Socket } from 'socket.io-client';
 
-let socket = io("https://colourmatch.onrender.com/"); // Connect to your Socket.IO server
+let socket = io('http://localhost:3001'); // Connect to your Socket.IO server
 
 
 socket.on('welcome',(data)=>{
@@ -70,12 +70,13 @@ const initialColors: string[] = Array.from({ length: 25 }, () => "#EEEEEE");
 const RandomColors: string[] = Suffle(RandomCol);
 
   let light: boolean;
+  light=true
 
-if (typeof window !== 'undefined' && window.localStorage.getItem("darkMode") === 'true') {
-    light = false;
-} else {
-    light = true;
-}
+// if (typeof window !== 'undefined' && window.localStorage.getItem("darkMode") === 'true') {
+//     light = false;
+// } else {
+//     light = true;
+// }
 
 const useStore = create<State>((set) => ({
     color: "",

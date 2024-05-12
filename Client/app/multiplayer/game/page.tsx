@@ -3,6 +3,8 @@ import React from 'react';
 import Box from '../../components/box';
 import Colors from '../../components/colors';
 import MultiRandom from '../../components/multiplayerRandom';
+import Timer from '../../components/timer';
+import Gameover from '../../components/gameover';
 import MultiplayerBox from '../../components/MultiplayerBox';
 import MPOverPanel from '../../components/MPOverPanel';
 
