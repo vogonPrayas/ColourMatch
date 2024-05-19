@@ -1,10 +1,5 @@
 import { Server } from 'socket.io';
 import http from 'http';
-// import express from 'express';
-// import cors from 'cors'; // Import the CORS middleware
-
-// const app = express(); // Create an Express.js app
-// app.use(cors()); // Add CORS middleware to your app
 
 const Suffle = (col) => {
     return (

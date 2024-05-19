@@ -64,7 +64,7 @@ const page = () => {
     const fetchData = async () => {
       try {
         await socket.on("disconnected", () => {
-      console.log("MEOW MEOW");
+      
       socket.emit("join", { code, name });
       })
       }
@@ -80,13 +80,13 @@ const page = () => {
   }, []); 
 
   socket.on("BothReady",(data:string[])=>{
-    console.log(data)
+   
     setRandomMP(data)
     router.push("/multiplayer/game")
   })
 
   socket.on("Ready",(data:string)=>{
-    alert(data)
+    //one is ready
   })
 
   const click=()=>{
