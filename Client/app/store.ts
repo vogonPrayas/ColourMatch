@@ -2,7 +2,8 @@ import { create } from "zustand";
 import React from "react";
 import { io,Socket } from 'socket.io-client';
 
-let socket = io('http://localhost:3001'); // Connect to your Socket.IO server
+// let socket = io('http://localhost:3001'); // Connect to your Socket.IO server
+let socket = io('https://colourmatch.onrender.com');
 
 
 socket.on('welcome',(data)=>{
